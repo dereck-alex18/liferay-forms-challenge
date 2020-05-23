@@ -1,45 +1,44 @@
 package testLiferayFormsApplication;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import foundation.InitProcess;
 import pageObjects.FormPage;
-import pageObjects.SubmissionPage;
 
-public class CheckEmailFieldTest {
+public class CheckTextFieldTest {
 	private WebDriver driver;
 	private FormPage formPageObj;
-	private SubmissionPage submissionPage;
 	
 	@Before
 	public void setUp() {
 		driver = InitProcess.createBrowser();
 		formPageObj = new FormPage(driver);
-		submissionPage = new SubmissionPage(driver);
+	
 	}
 	
 	@Test
-	public void checkNameTypedIsInNameField() {
-		//Check when user types something in the name, the name will be exact how the user typed
-		formPageObj.getTextNameFieldElement().sendKeys("Dereck Portela");
-		assertEquals("Dereck Portela", formPageObj.getTextNameFieldElement().getAttribute("value"));
+	public void checkTextTypedInTextField() {
+		//Check when user types something in the text field, the text will be exact what the user types
+		String text = "I joined test because testing may save your life";
+		formPageObj.getTextFieldElement().sendKeys(text);
+		assertEquals(text,formPageObj.getTextFieldElement().getAttribute("value"));
 	}
 	
 	@Test
-	public void checkNotDisplayErrorMessageWhenNameIsTypedTest() {
+	public void checkNotDisplayErrorMessageWhenTextIsTyped() {
 		//Check if no error message is displayed after the user type something in the
-		//email field and click on another field
-		formPageObj.getTextNameFieldElement().sendKeys("Dereck Portela");
+		//text field and click on another field
+		String text = "I joined test because testing may save your life";
+		formPageObj.getTextFieldElement().sendKeys(text);
 		formPageObj.getDateOfBirthFieldElement().click();
 		
 		if(formPageObj.getAllFeedBackMessages().size() > 0) {
 			assertFalse(formPageObj.getAllFeedBackMessages().get(0).isDisplayed());
 		}
-		
 	}
 	
 	@After

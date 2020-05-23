@@ -25,22 +25,23 @@ public class HappyPathTest {
 	
 	@Test
 	public void checkPageTitleTest() {
+		//Check if the page title is being displayed
 		assertTrue(formPageObj.getFormPageTitle().contains("This is a Liferay Forms"));
 	}
 	
 	@Test
 	public void checkIfPartyRockIsOnTheFormTest() {
-		//Expected result: party rock text must be on the page
+		//Check if the text "party rock" is in the form
 		assertTrue(formPageObj.getPartyRockText().contains("party rock"));
 	}
 	
 	@Test
 	public void fillAllFieldsAndSubmitTest() {
-		//Expected result: The form should be sent
+		//Check if filling all fields and click submit buttom. the form is sent
 		String text = "I joined test because testing may save your life";
 		formPageObj.fillAllFields("Dereck Portela", "01181994", text);
-		assertEquals(submissionPage.getInformationSentMessage(), "Information sent");
-		assertEquals(submissionPage.getSuccessfulyMessage(), "Information sent successfully!");
+		assertEquals("Information sent", submissionPage.getInformationSentMessage());
+		assertEquals("Information sent successfully!", submissionPage.getSuccessfulyMessage());
 	}
 	
 	@After
