@@ -15,6 +15,6 @@ public class SubmissionPage extends BasePage {
 	}
 	
 	public String getSuccessfulyMessage() {
-		return driver.findElement(By.cssSelector("h5.ddm-form-description")).getText();
+		return driver.findElement(By.xpath("h5.ddm-form-description")).getText();
 	}
 }

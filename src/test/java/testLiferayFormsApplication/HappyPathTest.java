@@ -1,5 +1,4 @@
 package testLiferayFormsApplication;
-
 import static org.junit.Assert.*;
 
 
@@ -31,21 +30,21 @@ public class HappyPathTest {
 	
 	@Test
 	public void checkIfPartyRockIsOnTheFormTest() {
-		assertEquals(formPageObj.getPartyRockText(), "party rock");
+		//Expected result: party rock text must be on the page
+		assertTrue(formPageObj.getPartyRockText().contains("party rock"));
 	}
 	
 	@Test
 	public void fillAllFieldsAndSubmitTest() {
-		formPageObj.inputTextNameField("Dereck Portela");
-		formPageObj.getDateOfBirthFieldElement().sendKeys("01181994");
-		formPageObj.inputTextTextField("I joined test area because test may save your life!");
-		formPageObj.clickOnSubmitBtn();
+		//Expected result: The form should be sent
+		String text = "I joined test because testing may save your life";
+		formPageObj.fillAllFields("Dereck Portela", "01181994", text);
 		assertEquals(submissionPage.getInformationSentMessage(), "Information sent");
 		assertEquals(submissionPage.getSuccessfulyMessage(), "Information sent successfully!");
 	}
 	
-//	@After
-//	public void tearDown() {
-//		driver.quit();
-//	}
+	@After
+	public void tearDown() {
+		driver.quit();
+	}
 }
