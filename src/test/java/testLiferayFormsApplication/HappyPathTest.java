@@ -37,9 +37,27 @@ public class HappyPathTest {
 	
 	@Test
 	public void fillAllFieldsAndSubmitTest() {
-		//Check if filling all fields and click submit buttom. the form is sent
+		//Check if filling all fields and click submit button. the form is sent
 		String text = "I joined test because testing may save your life";
-		formPageObj.fillAllFields("Dereck Portela", "01181994", text);
+		formPageObj.getTextNameFieldElement().sendKeys("Dereck Portela");
+		formPageObj.getDateOfBirthFieldElement().sendKeys("01181994");
+		formPageObj.getTextFieldElement().sendKeys(text);
+		formPageObj.clickOnSubmitBtn();
+		assertEquals("Information sent", submissionPage.getInformationSentMessage());
+		assertEquals("Information sent successfully!", submissionPage.getSuccessfulyMessage());
+	}
+	
+	@Test
+	public void fillNameAndTextFieldsSelectDateThroughCalendarAndSubmitTest(){
+		//Check if filling email and text form and selecting data through the calendar, the form is sent
+		String text = "I joined test because testing may save your life";
+		formPageObj.getTextNameFieldElement().sendKeys("Dereck Portela");
+		formPageObj.getDateOfBirthFieldElement().click();
+		formPageObj.getGoToCurrentDateBtn().click();
+		formPageObj.getCurrentDayDiv().click();
+		formPageObj.getTextFieldElement().sendKeys(text);
+		formPageObj.clickOnSubmitBtn();
+		System.out.println(formPageObj.getAllFeedBackMessages().size());
 		assertEquals("Information sent", submissionPage.getInformationSentMessage());
 		assertEquals("Information sent successfully!", submissionPage.getSuccessfulyMessage());
 	}

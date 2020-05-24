@@ -33,8 +33,9 @@ public class FormPage extends BasePage {
 		return driver.findElement(By.cssSelector("div.form-group textarea"));
 	}
 	
-	public WebElement clickOnSubmitBtn() {
-		return driver.findElement(By.cssSelector("button[type='submit']"));
+	public SubmissionPage clickOnSubmitBtn() {
+		driver.findElement(By.cssSelector("button[type='submit']")).click();
+		return new SubmissionPage(driver);
 	}
 	
 	public WebElement getMonthDropDown() {
@@ -51,7 +52,13 @@ public class FormPage extends BasePage {
 	}
 	
 	public List<WebElement> getAllFeedBackMessages(){
-		return driver.findElements(By.cssSelector("div.form-feedback-item"));
+		//Make sure to get the dynamic div
+		try {
+			return driver.findElements(By.cssSelector("div.form-feedback-item"));
+		}
+		catch (org.openqa.selenium.StaleElementReferenceException e) {
+			return driver.findElements(By.cssSelector("div.form-feedback-item"));
+		}
 	}
 	
 	public List<WebElement> getAllYears(){
@@ -66,11 +73,12 @@ public class FormPage extends BasePage {
 		return driver.findElement(By.cssSelector("div.day.active"));
 	}
 	
-	public SubmissionPage fillAllFields(String name, String dateOfBirth, String text) {
-		getTextNameFieldElement().sendKeys(name);
-		getDateOfBirthFieldElement().sendKeys(dateOfBirth);
-		getTextFieldElement().sendKeys(text);
-		clickOnSubmitBtn();
-		return new SubmissionPage(driver);
+	public WebElement getLanguageBtn() {
+		return driver.findElement(By.cssSelector("div.dropdown button"));
 	}
+	
+	public WebElement getLanguageDiv() {
+		return driver.findElement(By.cssSelector("ul.dropdown-menu li"));
+	}
+		
 }

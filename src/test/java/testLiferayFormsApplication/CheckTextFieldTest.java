@@ -21,7 +21,7 @@ public class CheckTextFieldTest {
 	}
 	
 	@Test
-	public void checkTextTypedInTextField() {
+	public void checkTextTypedInTextFieldTest() {
 		//Check when user types something in the text field, the text will be exact what the user types
 		String text = "I joined test because testing may save your life";
 		formPageObj.getTextFieldElement().sendKeys(text);
@@ -29,7 +29,7 @@ public class CheckTextFieldTest {
 	}
 	
 	@Test
-	public void checkNotDisplayErrorMessageWhenTextIsTyped() {
+	public void checkNotDisplayErrorMessageWhenTextIsTypedTest() {
 		//Check if no error message is displayed after the user type something in the
 		//text field and click on another field
 		String text = "I joined test because testing may save your life";

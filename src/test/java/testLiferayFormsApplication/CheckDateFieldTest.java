@@ -1,7 +1,6 @@
 package testLiferayFormsApplication;
 
 import static org.junit.Assert.*;
-import java.time.Month;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class CheckDateFieldTest {
 	}
 	
 	@Test
-	public void selectDateOnCalendar() {
+	public void selectDateOnCalendarTest() {
 		//Try to select a date, in this case 01/18/1994, through the calendar
 		Select monthDropDown = new Select(formPageObj.getMonthDropDown());
 		Select yearDropDown = new Select(formPageObj.getYearDropDown());
@@ -48,7 +47,7 @@ public class CheckDateFieldTest {
 	}
 	
 	@Test
-	public void selectTheCurrentDate() {
+	public void selectTheCurrentDateTest() {
 		//Select the current date through calendar
 		Select monthDropDown = new Select(formPageObj.getMonthDropDown());
 		Select yearDropDown = new Select(formPageObj.getYearDropDown());
@@ -64,7 +63,21 @@ public class CheckDateFieldTest {
 	}
 	
 	@Test
-	public void typeSpecialCharactersInField() {
+	public void checkNotDisplayErrorMessageWhenDateIsSelectedTest() {
+		//Check if error message is not displayed after selecting a date
+		formPageObj.getDateOfBirthFieldElement().click();
+		formPageObj.getGoToCurrentDateBtn().click();
+		formPageObj.getCurrentDayDiv().click();
+		if(formPageObj.getAllFeedBackMessages().size() > 0) {
+			assertFalse(formPageObj.getAllFeedBackMessages().get(0).isDisplayed());
+		}
+		
+	}
+	
+	@Test
+	public void typeSpecialCharactersInFieldTest() {
+		//Check if entering special characters and clicking on another field
+		//The error message is displayed
 		formPageObj.getDateOfBirthFieldElement().sendKeys("%%##****");
 		formPageObj.getTextFieldElement().click();
 		if(formPageObj.getAllFeedBackMessages().size() > 0) {

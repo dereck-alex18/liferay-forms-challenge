@@ -1,29 +1,27 @@
 package testLiferayFormsApplication;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import foundation.InitProcess;
 import pageObjects.FormPage;
-import pageObjects.SubmissionPage;
+
 
 public class CheckEmailFieldTest {
 	private WebDriver driver;
 	private FormPage formPageObj;
-	private SubmissionPage submissionPage;
+
 	
 	@Before
 	public void setUp() {
 		driver = InitProcess.createBrowser();
 		formPageObj = new FormPage(driver);
-		submissionPage = new SubmissionPage(driver);
 	}
 	
 	@Test
-	public void checkNameTypedIsInNameField() {
+	public void checkNameTypedIsInNameFieldTest() {
 		//Check when user types something in the name, the name will be exact how the user typed
 		formPageObj.getTextNameFieldElement().sendKeys("Dereck Portela");
 		assertEquals("Dereck Portela", formPageObj.getTextNameFieldElement().getAttribute("value"));
