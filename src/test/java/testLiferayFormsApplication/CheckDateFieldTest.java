@@ -75,13 +75,16 @@ public class CheckDateFieldTest {
 	}
 	
 	@Test
-	public void typeSpecialCharactersInFieldTest() {
+	public void typeSpecialCharactersInDateFieldTest() {
 		//Check if entering special characters and clicking on another field
 		//The error message is displayed
 		formPageObj.getDateOfBirthFieldElement().sendKeys("%%##****");
 		formPageObj.getTextFieldElement().click();
 		if(formPageObj.getAllFeedBackMessages().size() > 0) {
+			
 			assertTrue(formPageObj.getAllFeedBackMessages().get(0).isDisplayed());
+		}else {
+			assertTrue(false);
 		}
 		
 	}

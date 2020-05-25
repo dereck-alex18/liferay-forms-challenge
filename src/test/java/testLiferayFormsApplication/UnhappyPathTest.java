@@ -1,6 +1,6 @@
 package testLiferayFormsApplication;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,8 +22,10 @@ public class UnhappyPathTest {
 	@Test
 	public void checkIfAllErrorMesagesIsDisplayedSubmitEmptyForm() {
 		formPageObj.clickOnSubmitBtn();
-		if(formPageObj.getAllFeedBackMessages().size() > 0) {
-			assertEquals(3, formPageObj.getAllFeedBackMessages().size());
+		if(formPageObj.getAllFeedBackMessages().size() == 3) {
+			assertTrue(true);
+		}else {
+			assertTrue(false);
 		}
 	}
 	
